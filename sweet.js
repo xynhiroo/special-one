@@ -53,7 +53,7 @@ const audioElement = document.getElementById('ourSong');
 let isPlaying = false;
 
 // GANTI PESAN INI SESUKA HATI KAMU! \n untuk baris baru
-const message = "Aku cuma mau bilang...\nKamu itu spesial banget buat aku.\nSetiap hari sama kamu rasanya kayak mimpi.\nMakasih udah selalu ada ya.\n\nLove you always ❤️";
+const message = "Aku cuma mau bilang...\nKamu adalah orang yang spesial untuk ku.\nKamu adalah wanita yang kuat dan hebat.\nTetaplah berjuang dan terimakasih sudah bertahan.\n\nwish you all the best! and i still with same old feelings";
 let i = 0;
 const typingSpeed = 80;
 
