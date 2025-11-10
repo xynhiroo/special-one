@@ -3,15 +3,17 @@
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #1a0033, #3a0066); /* Gradasi ungu gelap */
+    background: linear-gradient(to bottom, #1a0033, #3a0066);
     color: #f0f0f0;
     font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden; /* Penting agar canvas tidak membuat scroll */
+    overflow: hidden;
     text-align: center;
+    /* EFEK BARU: Tambahkan perspective untuk efek 3D */
+    perspective: 1000px;
 }
 
 /* Efek Bintang Jatuh */
@@ -21,21 +23,32 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Di belakang konten */
+    z-index: 0;
+    /* EFEK BARU: Transisi untuk parallax */
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* Kontainer utama (di atas bintang) */
 .content-container {
     position: relative;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.3); /* Sedikit transparan */
+    background-color: rgba(0, 0, 0, 0.3);
     padding: 30px 40px;
     border-radius: 15px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
     max-width: 600px;
-    backdrop-filter: blur(5px); /* Efek glassmorphism tipis */
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    /* EFEK BARU: Transisi untuk 3D hover */
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
+
+/* EFEK BARU: 3D Hover pada Kartu */
+.content-container:hover {
+    transform: scale(1.05) rotateX(5deg) rotateY(-5deg);
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.7);
+}
+
 
 .profile-pic {
     width: 150px;
@@ -48,9 +61,9 @@ body {
 }
 
 .greeting {
-    font-family: 'Pacifico', cursive; /* Font tulisan sambung */
+    font-family: 'Pacifico', cursive;
     font-size: 2.5rem;
-    color: #ffd700; /* Warna emas */
+    color: #ffd700;
     margin-bottom: 10px;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
@@ -58,46 +71,34 @@ body {
 .message {
     font-size: 1.2rem;
     line-height: 1.6;
-    min-height: 100px; /* Beri ruang agar tidak loncat saat teks muncul */
+    min-height: 100px;
     color: #e0e0e0;
-    border-right: 2px solid rgba(255, 255, 255, 0.75); /* Kursor ketik */
-    white-space: pre-wrap; /* Jaga format teks */
-    overflow: hidden; /* Sembunyikan teks sebelum diketik */
-    display: inline-block; /* Agar border kursor pas */
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+    white-space: pre-wrap;
+    overflow: hidden;
+    display: inline-block;
     animation: blinkCursor 0.7s steps(40, end) infinite;
 }
 
-/* Animasi Kursor Ketik */
-@keyframes blinkCursor{
-from, to { border-color: transparent }
-50% { border-color: rgba(255, 255, 255, 0.75); }
+@keyframes blinkCursor {
+    from, to { border-color: transparent }
+    50% { border-color: rgba(255, 255, 255, 0.75); }
 }
 
-.song-link {
-    display: inline-block;
-    margin-top: 30px;
-    background-color: #ffd700;
-    color: #333;
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+/* KONTEN BARU: Style untuk Audio Visualizer */
+#audioVisualizer {
+    width: 100%;
+    height: 80px;
+    margin-top: 20px;
+    display: none; /* Sembunyi dulu, baru muncul pas lagu main */
 }
 
-.song-link:hover {
-    background-color: #ffec80;
-    transform: scale(1.05);
+/* KONTEN BARU: Animasi Denyut untuk Tombol */
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px #ffd700; }
+    50% { transform: scale(1.05); box-shadow: 0 0 25px #ffd700; }
+    100% { transform: scale(1); box-shadow: 0 0 10px #ffd700; }
 }
-
-/* Responsif */
-@media (max-width: 600px) {
-    .greeting { font-size: 2rem; }
-    .message { font-size: 1rem; }
-    .profile-pic { width: 120px; height: 120px; }
-    .content-container { padding: 20px 25px; }
-}
-/* Tambahkan ini di akhir file style.css */
 
 .song-button {
     display: inline-block;
@@ -115,11 +116,27 @@ from, to { border-color: transparent }
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* KONTEN BARU: Terapkan animasi pulse ke tombol */
+.song-button.pulse {
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
 .song-button:hover {
     background-color: #ffec80;
     transform: scale(1.05);
 }
 
 .song-button i {
-    margin-right: 8px; /* Jarak antara ikon dan teks */
+    margin-right: 8px;
+}
+
+/* Hapus .song-link, sudah tidak dipakai */
+/* ... */
+
+/* Responsif */
+@media (max-width: 600px) {
+    .greeting { font-size: 2rem; }
+    .message { font-size: 1rem; }
+    .profile-pic { width: 120px; height: 120px; }
+    .content-container { padding: 20px 25px; }
 }
