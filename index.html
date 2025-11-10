@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 </head>
-<canvas id="starCanvas"></canvas>
 <body>
+    <canvas id="starCanvas"></canvas>
 
     <div class="content-container">
         <img src="WhatsApp Image 2025-10-27 at 11.24.00.jpeg" alt="Foto Spesial" class="profile-pic">
@@ -18,12 +18,14 @@
         
         <p id="romanticMessage" class="message"></p>
 
+        <canvas id="audioVisualizer"></canvas>
+
         <button id="playSongBtn" class="song-button" style="display: none;">
             <i class="fas fa-play"></i> Putar Lagu Tersembunyi
         </button>
     </div>
 
-    <audio id="ourSong" src="Hal - L (Lyrics Video).mp3" loop></audio>
+    <audio id="ourSong" src="Hal - L (Lyrics Video).mp3" loop crossorigin="anonymous"></audio>
 
     <script src="sweet.js"></script>
 </body>
